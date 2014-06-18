@@ -6,7 +6,7 @@
 .nav {
  
     background-image: none;
-    background-color: white;
+    background-color:#F0F0F0    ;
     
     
 }
@@ -17,8 +17,7 @@
  
 }
 .container{
-    
-  display: inline;
+  
     
 }
 .nav li{
@@ -28,5 +27,19 @@
 .pull-right{
  
     display: inline;
+    
+}
+.row {
+    margin-top: 120;
+    color:white;
+}
+.col-md-6{
+    
+    opacity: 40;
+}
+.form-horizontal .form-group {
+    margin-left: auto;
+}
+.sign-up{
     
 }
