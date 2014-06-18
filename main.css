@@ -1,0 +1,32 @@
+.login{
+    
+  background-image:url('escheresque_ste.png');   
+    
+}
+.nav {
+ 
+    background-image: none;
+    background-color: white;
+    
+    
+}
+.nav h1{
+
+    display: inline;
+    
+ 
+}
+.container{
+    
+  display: inline;
+    
+}
+.nav li{
+ 
+    display: inline;
+}
+.pull-right{
+ 
+    display: inline;
+    
+}
