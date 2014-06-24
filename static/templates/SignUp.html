@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+ <form method = 'POST' action = '' class = "form-horizontal" role = "form">{%csrf_token%} 
+    {% for field in form %}
+     <div class = "form-group">
+         {% if field.name != 'password' %}
+        <input type = "text" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
+         {% else %}
+         <input type = "password" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
+         {% endif %}                   
+     </div>
+        
+     {% endfor %}
+     <div class = "sign-up">
+        <div class = "form-group">
+            <button type = "submit" class = "btn btn-default" value = "Submit" >Sign Up</button>
+        </div>
+     </div>  
+                    
+                
+</form>
+
+{% endblock %}
