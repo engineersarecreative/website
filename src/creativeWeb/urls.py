@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'signUps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+    
+    url(r'^thank-you/$', 'signUps.views.thankyou', name='thankyou'),
     url(r'^admin/', include(admin.site.urls)),
 )
 if settings.DEBUG:

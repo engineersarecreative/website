@@ -11,40 +11,51 @@
         <h1>engineersarecreative</h1>
         
             <div class = "pull-right">
-            <form class = "form-inline" role = "form">
-            
+            <form  method = 'post' class = "form-inline" role = "form">
+                {% csrf_token %}
                 <div class = "form-group">
-                    <label for = "E-mail">E-Mail:</label>    
-                    <input type = "text" class = "form-control" id = "e-mail" placeholder="Enter E-mail">
+                    <label for = "Username">Username:</label>    
+                    <input type = "text" name = 'username' class = "form-control" id = "username" placeholder="Enter Username">
                     
                 </div>
                 <div class = "form-group">
                     <label for = "Password">Password:</label>
-                    <input type = "password" class = "form-control" id = "password" placeholder="Enter password">
-                    <button type = "button" class = "btn btn-default">Login</button>
+                    <input type = "password" name = 'password' class = "form-control" id = "password" placeholder="Enter password">
+                    <input type = "submit" name = 'action' value = 'Login' class = "btn btn-default"></button>
             </form>
+           
             </div>
+           
        </div>
     </div>
   </div>
     
-      <div class = "container">
-        
-        <div class = "row">
-            <div class = "col-md-6">
-                <h2>Welcome to engineersarecreative!</h2>    
-                <h3>The connection between idea makers, engineers, and marketers</h3>
-            </div>
-            <div class = "col-md-6">
-                <h2>Sign Up!</h2>
-                
-                {% block content %} {% endblock %}
-                
-                
-            </div>
-        </div>    
+    {% if notMatched == True %}
+        <div class = 'col-sm-6 col-sm-offset-3'>
+        <div class = "alert alert-danger" role = "alert"> Sorry wrong username and password. Please try again! </div>
+        </div>
+    {% endif %}
+    
+    {% if allFieldsCompleted == False %}
+        <div class = 'col-sm-6 col-sm-offset-3'>
+        <div class = "alert alert-danger" role = "alert"> One or more fields are missing. Please try again! </div>
+        </div>
+    {% endif %}
+    
+     <div class = 'col-sm-6 col-sm-offset-3'>
+     {% if messages %}
+    
+    {% for message in messages %}
+    <p  {% if message.tags == "success" %} class= "alert alert-success" {% endif %} >{{ message }} </p>
+    {% endfor %}
+    {% endif %}
+        </div>
+    
+    {% block content %} {% endblock %}
    
-       
+    
+   
+   
    
 
     

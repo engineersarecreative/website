@@ -1,24 +1,47 @@
 {% extends 'index.html' %}
 
 {% block content %}
- <form method = 'POST' action = '' class = "form-horizontal" role = "form">{%csrf_token%} 
-    {% for field in form %}
-     <div class = "form-group">
-         {% if field.name != 'password' %}
-        <input type = "text" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
-         {% else %}
-         <input type = "password" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
-         {% endif %}                   
-     </div>
+
+
+ <div class = "container">
         
-     {% endfor %}
-     <div class = "sign-up">
-        <div class = "form-group">
-            <button type = "submit" class = "btn btn-default" value = "Submit" >Sign Up</button>
-        </div>
-     </div>  
+        <div class = "row">
+            <div class = "col-md-6">
+                <h2>Welcome to engineersarecreative!</h2>    
+                <h3>The connection between idea makers, engineers, and marketers</h3>
+            </div>
+            <div class = "col-md-6">
+                
+                
+                <h2>Sign Up!</h2>
+                
+                <form method = 'POST' action = '' class = "form-horizontal" role = "form">{%csrf_token%} 
+                {% for field in form %}
+                    <div class = "form-group">
+                    {% if field.name != 'password' %}
+                        <input type = "text" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
+                    {% else %}
+                        <input type = "password" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder=" {{ field.label }}" >
+                    {% endif %}                   
+                    </div>
+        
+                {% endfor %}
+            <div class = "sign-up">
+                <div class = "form-group">
+                    <button type = "submit" name = 'action' class = "btn btn-default" value = "Register" >Sign Up</button>
+            </div>
+        </div>  
                     
                 
-</form>
+    </form>
+                
+                
+            </div>
+        </div>    
+     <hr>
+     <footer>
+        <p style = "color:white">&copy; Company 2014</p>
+      </footer>
+ 
 
 {% endblock %}
