@@ -8,10 +8,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    #Links home page to home function
     url(r'^$', 'signUps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    
+    #Links /thank-you page to thankyou function
     url(r'^thank-you/$', 'signUps.views.thankyou', name='thankyou'),
+    #Allows admin page to function
     url(r'^admin/', include(admin.site.urls)),
 )
 if settings.DEBUG:

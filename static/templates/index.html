@@ -41,6 +41,16 @@
         <div class = "alert alert-danger" role = "alert"> One or more fields are missing. Please try again! </div>
         </div>
     {% endif %}
+    {% if usernameTaken == True %}
+        <div class = 'col-sm-6 col-sm-offset-3'>
+        <div class = "alert alert-danger" role = "alert"> The username is already taken. Please try again! </div>
+        </div>
+     {% endif %}
+     {% if passwordMatch == False %}
+        <div class = 'col-sm-6 col-sm-offset-3'>
+        <div class = "alert alert-danger" role = "alert"> Passwords do not match. Please try again! </div>
+        </div>
+     {% endif %}
     
      <div class = 'col-sm-6 col-sm-offset-3'>
      {% if messages %}

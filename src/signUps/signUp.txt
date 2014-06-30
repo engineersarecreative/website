@@ -1,0 +1,9 @@
+There are 4 files that should be touched/changed in this folder: models.py, views.py, forms.py, and admin.py
+
+models.py: Instructs the sql database as to what tables to create(what info we want to keep in the database)
+
+forms.py: Assigns the model from models.py to a form that we can use in views.py
+
+views.py: Contains the function corresponding to a certain webpage. Each function does whatever you would like and outputs the html. 
+
+admin.py: Connects your page to default Django admin authentication system 

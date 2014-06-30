@@ -1,0 +1,6 @@
+This folder contains the main module for this django project with the two important files of urls.py, and settings.py
+
+urls.py: Connects the web-page to a function defined in views.py
+
+settings.py: Connects different libraries to our project and contains path to our html files
+

@@ -1,0 +1,1 @@
+Folder contains all static files such as our CSS and HTML pages.

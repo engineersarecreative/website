@@ -13,3 +13,4 @@ class signUp(models.Model):
 	def __unicode__(self):
 		return smart_unicode(self.email)
 
+#NEED TO GET RID OF ALL MODELS EVENTUALLY, NO LONGER REQUIRED

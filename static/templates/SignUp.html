@@ -22,10 +22,17 @@
                         <input type = "text" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
                     {% else %}
                         <input type = "password" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder=" {{ field.label }}" >
-                    {% endif %}                   
+                    {% endif %}    
+                        
+                      
+                       
+                         
                     </div>
+                  {% endfor %}
         
-                {% endfor %}
+        <div class = form-group>
+         <input type = "password" class = "form-control" name = "reenter" id = "repassword" placeholder="Re-enter Password">
+            </div>
             <div class = "sign-up">
                 <div class = "form-group">
                     <button type = "submit" name = 'action' class = "btn btn-default" value = "Register" >Sign Up</button>
