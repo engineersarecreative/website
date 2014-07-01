@@ -13,8 +13,9 @@ from django.db import IntegrityError
 # Create your views here.
 def home(request):
 
+	
 	# Registration form instance
-	form = SignUpForm(request.POST or None)
+	#form = SignUpForm(request.POST or None)
 
 
 	#Booleans/strings used mainly in html to check if form is valid
@@ -28,12 +29,13 @@ def home(request):
 	email = ''
 	firstName = ''
 	lastName = ''
+	user = ''
 	
 	#Checks if registration submit
 	if(requestType == "Register"):
 
 		#logouts out any currentlly logged in user
-		auth.logout(request)
+		#auth.logout(request)
 
 		#Gets all info from HTML using POST and puts in local variable
 		username = request.POST.get('username','')
@@ -44,13 +46,12 @@ def home(request):
 		repassword = request.POST.get('reenter','')
 		
 		#Checks to see if all fields on registration form are completed
-		if(username == '' or password == '' or email == '' or firstName == '' or lastName == ''):
+		if(username == '' or password == '' or email == '' or firstName == '' or lastName == '' or repassword == ''):
 			allFieldsCompleted = False
 
 		#Checks to see if SignUpForm is valid following models created
-		if form.is_valid():
-			save_it = form.save(commit = False)
-			save_it.save()
+		if(allFieldsCompleted == True):
+			
 			allFieldsCompleted = True
 			notMatched = False
 			passwordMatch = True
@@ -58,7 +59,7 @@ def home(request):
 			#If password doesn't equal re-enter field then returns same SignUp.html page
 			if(password != repassword):
 				passwordMatch = False
-				return render_to_response("SignUp.html",locals(),context_instance = RequestContext(request))
+				return render(request,"SignUp.html",locals())
 
 			#Tries to create an user
 			try:
@@ -69,7 +70,7 @@ def home(request):
 			except IntegrityError:
 				#Fails if username already taken so sends this message 
 				usernameTaken = True
-				return render_to_response("SignUp.html",locals(),context_instance = RequestContext(request))
+				return render(request,"SignUp.html",locals())
 
 
 			usernameTaken = False
@@ -78,19 +79,51 @@ def home(request):
 			subject = 'Thank you for singing up with engineersarecreative!'
 			message = 'Welcome to engineersarecreative! Please try out our beta version of the site and give us advice on how to improve.'
 			from_email = settings.EMAIL_HOST_USER
-			to_list = [save_it.email, settings.EMAIL_HOST_USER]
+			to_list = [email, settings.EMAIL_HOST_USER]
 			send_mail(subject,message,from_email,to_list,fail_silently = True)
 
 			#If registration successful outputs this message
 			messages.success(request,"We will be in touch")
-			return HttpResponseRedirect('/thank-you/')
+			#return HttpResponseRedirect('/thank-you/')
+			return render(request, "thankyou.html", locals())
 		
 
     #Checks if login submit
 	elif(requestType == "Login"):
 
 		#Get username and password from html using POST
+		#auth.logout(request)
+		username = request.POST.get('username','')
+		password = request.POST.get('password', '')
+		#Makes sure they are in the database
+		user = None
+		user = auth.authenticate(username=username, password=password)
+
+		if user is not None:
+			#Login user if user is valid
+			auth.login(request,user)
+			#return render(request, "login.html", locals())
+			#return HttpResponse("Welcome" + " " + user.username)
+		else:
+			#Else outputs error message
+			notMatched = True
+	elif(requestType == "logout"):
 		auth.logout(request)
+
+	if(request.user.is_authenticated()):
+		return render(request,"login.html",locals())
+	else:
+		return render(request,"SignUp.html",locals())
+
+#Output thank you page after registration is successful
+def thankyou(request):
+	notMatched = False
+	requestType = request.POST.get('action',False)
+
+	if(requestType == "Login"):
+
+		#Get username and password from html using POST
+		#auth.logout(request)
 		username = request.POST.get('username','')
 		password = request.POST.get('password', '')
 		#Makes sure they are in the database
@@ -99,18 +132,12 @@ def home(request):
 		if user is not None:
 			#Login user if user is valid
 			auth.login(request,user)
-			return HttpResponse("Welcome" + " " + user.username)
+			#return HttpResponse("Welcome" + " " + user.username)
+			return render(request,"login.html",locals())
 		else:
 			#Else outputs error message
 			notMatched = True
-			
-
-	return render_to_response("SignUp.html",locals(),context_instance = RequestContext(request))
-
-#Output thank you page after registration is successful
-def thankyou(request):
-	notMatched = False
-	return render_to_response("thankyou.html",locals(),context_instance = RequestContext(request))
+	return render(request,"thankyou.html",locals())
 
 
 

@@ -1,14 +1,23 @@
-{% extends "index.html" %}
 
 
+<html>
 
-{% block login %}
+<head>
+    
+</head>
 
-{% block title %}| Login{% endblock title %}
-<form method="post">
+<body>
+    
+<p>Welcome </p>
+<form method="post" action = ''>
     {% csrf_token %}
-    <input type = "text" name = "username" value = "" id = "username">
-    <input type = "password" name = "password" value = "" id = "password">
-    <input type="submit" value="Submit">
+    
+    <input type="submit" name = "action" value="logout">
 </form>
-{% endblock login %}
+    
+</body>
+
+
+
+</html>
+

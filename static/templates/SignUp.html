@@ -16,20 +16,25 @@
                 <h2>Sign Up!</h2>
                 
                 <form method = 'POST' action = '' class = "form-horizontal" role = "form">{%csrf_token%} 
-                {% for field in form %}
-                    <div class = "form-group">
-                    {% if field.name != 'password' %}
-                        <input type = "text" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder="{{                            field.label }}" >
-                    {% else %}
-                        <input type = "password" class = "form-control"  name = "{{ field.name }}" id= "id_{{ field.name }}"  placeholder=" {{ field.label }}" >
-                    {% endif %}    
-                        
-                      
-                       
-                         
-                    </div>
-                  {% endfor %}
-        
+                
+                    
+                       <div class = form-group>
+         <input type = "text" class = "form-control" name = "first_name"  placeholder="First Name">
+            </div>
+                    
+                        <div class = form-group>
+         <input type = "text" class = "form-control" name = "last_name"  placeholder="Last Name">
+            </div>
+                   <div class = form-group>
+         <input type = "text" class = "form-control" name = "email"  placeholder="Email">
+            </div>   
+        <div class = form-group>
+         <input type = "text" class = "form-control" name = "username"  placeholder="Username">
+            </div>
+        <div class = form-group>
+         <input type = "password" class = "form-control" name = "password"  placeholder="Enter Password">
+            </div>
+                               
         <div class = form-group>
          <input type = "password" class = "form-control" name = "reenter" id = "repassword" placeholder="Re-enter Password">
             </div>
