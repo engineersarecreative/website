@@ -10,7 +10,9 @@ from .models import signUp
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 
+
 # Create your views here.
+
 def home(request):
 
 	
@@ -29,7 +31,7 @@ def home(request):
 	email = ''
 	firstName = ''
 	lastName = ''
-	user = ''
+	#user = ''
 	
 	#Checks if registration submit
 	if(requestType == "Register"):
@@ -102,6 +104,7 @@ def home(request):
 		if user is not None:
 			#Login user if user is valid
 			auth.login(request,user)
+			settings.CHECK = True
 			#return render(request, "login.html", locals())
 			#return HttpResponse("Welcome" + " " + user.username)
 		else:
@@ -109,8 +112,9 @@ def home(request):
 			notMatched = True
 	elif(requestType == "logout"):
 		auth.logout(request)
+		settings.CHECK = False
 
-	if(request.user.is_authenticated()):
+	if(request.user.is_authenticated() or settings.CHECK == True):
 		return render(request,"login.html",locals())
 	else:
 		return render(request,"SignUp.html",locals())

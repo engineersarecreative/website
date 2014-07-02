@@ -82,6 +82,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+CHECK = False
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -99,3 +101,4 @@ if DEBUG:
         os.path.join(os.path.dirname(BASE_DIR),"static","static"), 
 
     ) 
+
