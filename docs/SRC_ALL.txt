@@ -1,0 +1,77 @@
+##############################################################################
+##                   engineersarecreative                                   ##
+##############################################################################
+## Copyright (C) 2014 Corporation.  All rights reserved.                    ##
+##                                                                          ##
+## This is the property of Corporation and may only be utilized             ##
+## pursuant to a written Restricted Use Nondisclosure Agreement             ##
+## with Corporation.  It may not be used, reproduced, or                    ##
+## disclosed to others except in accordance with the terms and              ##
+## conditions of such agreement.                                            ##
+##                                                                          ##
+## All products, processes, computer systems, dates, and figures            ##
+## specified are preliminary based on current expectations, and are         ##
+## subject to change without notice.                                        ##
+##############################################################################
+
+Table of contents:
+
+I. manage.py
+
+II. signUps
+   a)admin.py
+   b)models.py
+   c)forms.py
+   d)views.py
+   e)tests.py
+
+III. creativeWeb
+   a)__init__.py
+   b)settings.py 
+   c)urls.py
+   d)wsgi.py
+
+###################################################################################
+
+I. manage.py:
+   a)THIS FILE SHOULD NOT BE CHANGED IN ANY WAY
+   b)Use command “python manage.py run server” to run local server
+   c)Use command “python manage.py syncdb” to update any new models added for database
+II.signUps
+   a)admin.py: This is the default Django admin script and this was already provided so     
+   doesn’t need to be changed unless you would like to create your own admin page
+   b)models.py:This file contains the information(outline) of the data being stored in the                                                    
+   the database. For the signUps app, there are no models needed or created yet, but if it
+   becomes necessary to store data from login page without using Users data then you can code it here.
+   c)forms.py:There are no forms required for the login page so no need to worry about this script.
+   d)views.py:
+	i.Home function: This is the function to edit if there needs to be an interactive action added to 
+        home.html and signUp.html(which extends index.html). Currently,the function uses request.POST() method to 
+	retrieve sign-up information from the user and checks to see if the fields are all valid(password/re-enter password
+	are same, username not taken,etc…). If the fields are valid, then an email is sent to the user and the user is logged in.
+	Login is also taken care of in this function. If the user is authenticated(in the database) then he will be logged in. 
+	Finally, if the user is logged in , then home.html will be returned otherwise signUp.html will.
+	ii.Important variables:
+		-requestType:Gets type of request being mode(login or sign-up) to decide what request to handle
+		-passwordMatch: True if re-enter password and password match otherwise is False
+		-allFieldsCompleted: True if all fields in sign-up form are completed/valid otherwise false
+		-usernameTaken: True if username is taken otherwise False
+		-user:instance of newly created user and can save the user into database using user.save() and more info
+		on users can be found here: https://docs.djangoproject.com/en/dev/topics/auth/default/#user-objects
+	iii. Important functions:
+		-render(request,name.html,locals()): You are displaying the html at the server address and passing in local variables 
+		that you can use in the template code
+		-request.POST.get(’’):Looks for text box with name matching what you passed into function and gets text entered there
+		-User.objects.create_user(username,email,password): Creates new user if you have three inputs for function
+		-send_mail(subject,message,from-email,to-list(is of type list), fail_silently= True): Sends email with given info
+		-auth.authenticate(username=username,password=password): looks to see if username and password match in database
+		-auth.login(request,user) and auth.logout(user): logins and logout user
+		-request.user.is_authenticated(): Checks to see if user has logged in status
+		
+III. creativeWeb
+	a)THIS FILE SHOULD NOT BE CHANGED IN ANY WAY
+	b)The middleware settings, database information, Static url location, Debug mode, and Email information(which email to send confirmation) can be changed in this file.
+		i. Currently, middleware settings are default, static url is website/static/static/templates, Debug mode is on, database is Sqlite, email being used is : 			rahulajoshi108@gmail.com
+	c)This script connects the webpage url to a function defined in views.py of whichever app. 
+	d)THIS FILE SHOULD NOT BE CHANGED IN ANY WAY
+   

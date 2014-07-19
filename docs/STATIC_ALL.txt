@@ -1,0 +1,50 @@
+##############################################################################
+##                   engineersarecreative                                   ##
+##############################################################################
+## Copyright (C) 2014 Corporation.  All rights reserved.                    ##
+##                                                                          ##
+## This is the property of Corporation and may only be utilized             ##
+## pursuant to a written Restricted Use Nondisclosure Agreement             ##
+## with Corporation.  It may not be used, reproduced, or                    ##
+## disclosed to others except in accordance with the terms and              ##
+## conditions of such agreement.                                            ##
+##                                                                          ##
+## All products, processes, computer systems, dates, and figures            ##
+## specified are preliminary based on current expectations, and are         ##
+## subject to change without notice.                                        ##
+##############################################################################
+
+Table of contents:
+
+I. media
+II. static
+   a)css
+   b)js
+III. static-only
+   a)admin
+   b)css
+IV.templates 
+   
+
+###################################################################################
+
+I. media:Place videos and pictures in this folder to use in the web-pages
+II. static: Place static files here such as CSS and JS 
+	a. css
+	  i.bootstrap.css: This css file is being used with every html page in this project
+	  and can find out how to use bootstrap at this site: http://getbootstrap.com/css/
+	  ii.font_awesome.min.css
+	  iii.modern-business.css: CSS used with every page except signUp.html and index.html
+	  iv. main.css: CSS used only with signUp.html and index.html
+	b. js(used with every webpage except signUp.html and index.html)
+	  i.boostrap.js
+	  ii.jquery-1.10.2.js
+	  iii.bootstrap.min.js
+	  iv. modern-business.js
+III.static-only
+	a. admin: Can put own admin webpage here if you don’t want to use default
+	b. css: Put css files for admin here
+IV. templates
+	a. index.html and signUp.html: make up the login page
+	b. home.html: home page after login
+
