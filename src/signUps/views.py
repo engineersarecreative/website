@@ -85,9 +85,11 @@ def home(request):
 			send_mail(subject,message,from_email,to_list,fail_silently = True)
 
 			#If registration successful outputs this message
-			messages.success(request,"We will be in touch")
+			#messages.success(request,"We will be in touch")
+			user = auth.authenticate(username=username, password=password)
+			auth.login(request,user)
 			#return HttpResponseRedirect('/thank-you/')
-			return render(request, "thankyou.html", locals())
+			return render(request, "home.html", locals())
 		
 
     #Checks if login submit
@@ -115,7 +117,7 @@ def home(request):
 		settings.CHECK = False
 
 	if(request.user.is_authenticated() or settings.CHECK == True):
-		return render(request,"login.html",locals())
+		return render(request,"home.html",locals())
 	else:
 		return render(request,"SignUp.html",locals())
 
@@ -142,7 +144,9 @@ def thankyou(request):
 			#Else outputs error message
 			notMatched = True
 	return render(request,"thankyou.html",locals())
-
+def logout(request):
+	auth.logout(request)
+	return render(request,"SignUp.html",locals())
 
 
     

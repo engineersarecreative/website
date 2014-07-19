@@ -12,7 +12,8 @@ urlpatterns = patterns('',
     url(r'^$', 'signUps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     #Links /thank-you page to thankyou function
-    url(r'^thank-you/$', 'signUps.views.thankyou', name='thankyou'),
+    url(r'^thankyou/$', 'signUps.views.thankyou', name='thankyou'),
+    url(r'^logout/$', 'signUps.views.logout', name='logout'),
     #Allows admin page to function
     url(r'^admin/', include(admin.site.urls)),
 )
